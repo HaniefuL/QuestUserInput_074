@@ -1,5 +1,6 @@
 package com.example.questuserinput_074
 
+import android.R.attr.thickness
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -98,5 +100,11 @@ fun FormDataDiri(modifier: Modifier
         ) {
             Text(text = "Submit")
         }
+
+            Divider(
+                modifier = Modifier.padding(vertical = 16.dp)
+                thickness = 1.dp,
+                color = Color.DarkGray
+            )
     }
 }
