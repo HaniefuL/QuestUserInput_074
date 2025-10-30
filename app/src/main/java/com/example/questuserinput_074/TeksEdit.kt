@@ -1,5 +1,7 @@
 package com.example.questuserinput_074
 
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,8 +36,28 @@ fun FormDataDiri(modifier: Modifier
         )
         Row {
             gender.forEach { item ->
-
+                Row (modifier = Modifier.selectable(
+                    selected = textJk == item,
+                    onClick = { textJk = item}
+                ), verticalAlignment = Alignment.CenterVertically){
+                    RadioButton(
+                        selected = textJk == item,
+                        onClick = {
+                            textJk = item
+                        })
+                    Text(item)
+                }
             }
+        }
+        OutlinedTextField(
+            value = textAlamat,
+            singleLine = true,
+            modifier = Modifier.width(250.dp),
+            label = {Text(text = "Alamat Lengkap")},
+            onValueChange = {
+                textAlamat = it
+            }
+            )
         }
     }
 }
