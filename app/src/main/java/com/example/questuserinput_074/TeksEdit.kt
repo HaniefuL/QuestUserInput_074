@@ -95,6 +95,8 @@ fun FormDataDiri(modifier: Modifier
                 alamat=textAlamat
 
             }
-        )
+        ) {
+            Text(text = "Submit")
+        }
     }
 }
