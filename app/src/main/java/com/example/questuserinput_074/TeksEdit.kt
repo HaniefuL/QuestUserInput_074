@@ -18,12 +18,15 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 
 annotation class composable
@@ -32,11 +35,11 @@ annotation class composable
 fun FormDataDiri(modifier: Modifier
 ){
     var textNama by remember { mutableStateOf("") }
-    var textAlamat by remember { mutableStateOf(" ") }
+    var textAlamat by remember { mutableStateOf("") }
     var textJK by remember { mutableStateOf("") }
 
     var nama by remember { mutableStateOf("") }
-    var alamat by remember { mutableStateOf(" ") }
+    var alamat by remember { mutableStateOf("") }
     var jenis by remember { mutableStateOf("") }
 
 
@@ -52,21 +55,19 @@ fun FormDataDiri(modifier: Modifier
             modifier = Modifier.width(250.dp),
             label = { Text(text = " Nama Lenkkap") },
             onValueChange = {
-                val it = null
                 textNama = it
             }
         )
         Row {
             gender.forEach { item ->
-                val textJk = null
                 Row (modifier = Modifier.selectable(
-                    selected = textJk == item,
-                    onClick = { textJk = item}
+                    selected = textJK == item,
+                    onClick = { textJK = item}
                 ), verticalAlignment = Alignment.CenterVertically){
                     RadioButton(
-                        selected = textJk == item,
+                        selected = textJK == item,
                         onClick = {
-                            textJk = item
+                            textJK = item
                         })
                     Text(item)
                 }
@@ -78,52 +79,49 @@ fun FormDataDiri(modifier: Modifier
             modifier = Modifier.width(250.dp),
             label = {Text(text = "Alamat Lengkap")},
             onValueChange = {
-                val it = null
                 textAlamat = it
             }
         )
         Divider(
-            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_medium), top = dimensionResource)
-            id = 30dp
-            )),
-            thickness = dimensionResource(1dp),
+            modifier = Modifier.padding(bottom = dimensionResource(id = R.dimen.padding_medium),
+                top = dimensionResource(
+                    id = R.dimen.padding_medium
+                )),
+            thickness = dimensionResource(R.dimen.dividder_tipis),
             color = Color.DarkGray
         )
 
         Button(
-            modifier = Modifier.fillMaxWidth(fraction = if),
-            //the button is enabled when the user makes a selection
+            modifier = Modifier.fillMaxWidth(1f),
+            // membuat agar button bisa di klik ketika user mengisi datanya
             enabled = textAlamat.isNotEmpty(),
             onClick = {
                 nama=textNama
                 jenis=textJK
                 alamat=textAlamat
-
             }
         ) {
-            Text(text = "Submit")
+            Text(stringResource(R.string.submit))
         }
-
-            Divider(
-                modifier = Modifier.padding(vertical = 16.dp)
-                thickness = 1.dp,
-                color = Color.DarkGray
-            )
+        Divider(
+            modifier = Modifier.padding(bottom = dimensionResource(R.dimen.padding_medium), top = dimensionResource(
+                id = R.dimen.padding_medium
+            )),
+            thickness = dimensionResource(R.dimen.dividder_tipis),
+            color = Color.DarkGray
+        )
 
         ElevatedCard(
             elevation = CardDefaults.cardElevation(defaultElevation = 10.dp),
             colors = CardDefaults.cardColors(containerColor = Color.Black),
             modifier = Modifier
-                .height(height = 100.dp)
-                .width(width = 300.dp)
+                .height(100.dp)
+                .width(300.dp)
         ) {
-            Column(
-                modifier = Modifier.padding(horizontal = 5.dp, vertical = 15.dp)
-            )
-            {
-                Text(text = "Nama : $nama", color = Color.White)
-                Text(text = "Gender: $jenis", color = Color.White)
-                Text(text = "Alamat: $alamat", color = Color.White)
+            Column (modifier = Modifier.padding(horizontal = 5.dp, vertical = 15.dp), ){
+                Text(text = "Nama   :"+nama, color = Color.White )
+                Text(text = "Gender :"+jenis, color = Color.White)
+                Text(text = "Alamat :"+alamat, color = Color.White)
             }
 
         }
